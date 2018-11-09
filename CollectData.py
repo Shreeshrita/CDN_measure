@@ -10,24 +10,30 @@ url_list = [
 
 ]
 
-suffix_list = ['Dulles:Chrome.DSL', 'Virginia:Chrome.DSL', 'Clifton:Chrome.DSL', 'NewYork:Chrome.DSL',
-               'Orlando:Chrome.DSL', 'Chicago:Chrome.DSL']
-csv_files = []
+suffix_list = ['Dulles:Chrome.DSL',  'Clifton:Chrome.DSL', 'NewYork:Chrome.DSL',
+               'Orlando:Chrome.DSL', 'Chicago:Chrome.DSL', 'Lincoln:Chrome.DSL', 'Denver:Chrome.DSL',
+                'Phoenix:Chrome.DSL', 'California:Chrome.DSL', 'LosAngeles:Chrome.DSL', 'Oregon:Chrome.DSL',
+                'Toronto:Chrome.DSL', 'Virginia:Chrome.DSL']
 # index = 0
+master_list = []
+key = 'Akamai'
 for suffix in suffix_list:
+    csv_files = []
     for url in url_list:
         url1 = "http://www.webpagetest.org/runtest.php?url="+url+"&f=json&k=A.aada49748da06b441cef2a9cb402fd94&"+suffix
         # file = threading.Thread(target=fetch_api.get_csv, args=(url1))
         file = fetch_api.get_csv(url1)
         csv_files.append(file)
         print (file)
-        time.sleep(5)
+        # time.sleep(5)
 
         # index += 1
     time.sleep(60)
-    # for file in csv_files:
-    #     cdn_server_list = fetch_api.decode_results(file)
-    #     print (cdn_server_list)
-    #
-
+    print (csv_files)
     print (fetch_api.decode_results(csv_files))
+    # temp_list = (fetch_api.decode_results(csv_files))
+    # print (temp_list)
+#     if temp_list.has_key('Akamai'):
+#         master_list.append(lambda key: temp_list['Akamai'])
+#
+# print(master_list)
